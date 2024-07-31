@@ -1,0 +1,53 @@
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shopping-card {
+  justify-content: space-between;
+  background-color: aqua;
+  padding: 20px 30px;
+}
+
+.product-item {
+  padding: 20px;
+}
+
+.btn {
+  padding: 10px;
+  height: 20%;
+  background-color: #179957;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.price {
+  color: red;
+}
+
+.seller {
+  color: blue;
+}
+
+.name {
+  color: green;
+}
+
+.image {
+  border: 4px solid lightgray;
+}
+
+::-webkit-input-placeholder {
+  padding-left: 10px;
+}
+
+.SearchBar {
+  border: 2px solid gray;
+  border-radius: 5px;
+  width: 650px;
+  height: 40px;
+}
+
+/* flex justify-end border-2 border-gray-400 rounded-lg w-96 h-9 */
