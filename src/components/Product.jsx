@@ -2,10 +2,12 @@ import { useContext } from "react";
 import "../App.css"
 import { StateContext } from "../state";
 import { Link } from "react-router-dom";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 
 
 const Product = () => {
-  const { products, addToCart, cart, setSearchFilter } = useContext(StateContext);
+
+  const { products, addToCart, cart, setSearchFilter, favoriteFunc, wishlist } = useContext(StateContext);
   return (
     <div>
       <div className="bg-blue-500 flex justify-between items-center pr-10 pl-10 text-white h-16 ">
@@ -13,6 +15,10 @@ const Product = () => {
         <Link to={"/"}>Product</Link>
         <Link to={"/cart"}>Cart
           <sub>{cart.length}</sub>
+        </Link>
+        <Link to={"/login"}>Login</Link>
+        <Link to={"/wishlist"}>Favorite
+          <sub>{wishlist.length}</sub>
         </Link>
       </div>
       <div className="flex">
@@ -25,6 +31,12 @@ const Product = () => {
               <p className="price"> Rs. {product.price} /-</p>
               <button className="btn" onClick={() => addToCart(product)}>Add To Cart</button>
               <p>Quantity: {cart.find(item => item.id === product.id)?.quantity || 0}</p>
+              <div className="flex">
+                <button className="btnfaorite" onClick={() => favoriteFunc(product)}>favorite</button>
+                <p className="favoriteicon" style={{ cursor: 'pointer' }}>
+                  {wishlist.find(item => item.id === product.id) ? <MdFavorite style={{ color: 'red' }} /> : <MdFavoriteBorder style={{ color: 'black' }} />}
+                </p>
+              </div>
             </div>
           </div>
         ))}
@@ -34,3 +46,4 @@ const Product = () => {
 }
 
 export default Product;
+

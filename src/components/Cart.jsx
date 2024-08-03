@@ -1,16 +1,54 @@
 import { useContext } from "react";
 import "../App.css"
 import { StateContext } from "../state";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartList = () => {
-  const { cart, increaseQuantity, decreaseQuantity, handleOrderPlacement } = useContext(StateContext)
+
+  const navigate = useNavigate()
+
+  function orderLogin() {
+    if (email.length < 2 || password.length < 2) {
+      alert("Please Login")
+      navigate("/login")
+    } else if (email.length >= 2 && password.length >= 2) {
+      alert("Order Placed")
+      handleOrderPlacement()
+      navigate("/")
+    }
+  }
+
+  function Orderplacedbtn() {
+    if (cart.length === 0) {
+      alert("Order Quantity cannot be zero")
+      navigate("/")
+    } else {
+      orderLogin()
+    }
+  }
+
+  function orderCal() {
+    if (cart.length === 0) {
+      alert("Order Quantity cannot be zero")
+      navigate("/")
+    } else {
+      handleOrderPlacement()
+      alert("Order Calcelled")
+      navigate("/")
+    }
+  }
+
+  const { cart, email, password, increaseQuantity, decreaseQuantity, handleOrderPlacement, wishlist } = useContext(StateContext)
   return (
     <div>
       <div className="bg-blue-500 flex justify-between items-center pr-10 pl-10 text-white h-16 ">
         <Link to={"/"}>Product</Link>
         <Link to={"/cart"}>Cart
           <sub>{cart.length}</sub>
+        </Link>
+        <Link to={"/login"}>Login</Link>
+        <Link to={"/wishlist"}>Favorite
+          <sub>{wishlist.length}</sub>
         </Link>
       </div>
       {
@@ -32,8 +70,8 @@ const CartList = () => {
         ))}
       <div className="right-10 py-10 pr-10 bottom-10 flex justify-end items-center">
         <p className='text-blue-400 '>Total: <span>{cart.reduce((total, item) => total + (item.price * item.quantity), 0)}</span></p>
-        <button className='bg-green-600 ml-2 text-white rounded-md w-28 h-10' onClick={handleOrderPlacement}>Order Placed</button>
-        <button className='bg-green-600 ml-2 text-white rounded-md w-32 h-10' onClick={handleOrderPlacement}>Order Cancelled</button>
+        <button className='bg-green-600 ml-2 text-white rounded-md w-28 h-10' onClick={Orderplacedbtn}>Order Placed</button>
+        <button className='bg-green-600 ml-2 text-white rounded-md w-32 h-10' onClick={orderCal}>Order Cancelled</button>
       </div>
     </div>
   );
