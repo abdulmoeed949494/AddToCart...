@@ -55,6 +55,38 @@ export default function StateProvider({ children }) {
       seller: "AMZ",
       price: 3599,
     },
+    {
+      id: 7,
+      url: "https://www.gizmochina.com/wp-content/uploads/2018/11/Guophone-X3-400x400.jpg",
+      name: "TRQ Mobile",
+      category: "Mobile",
+      seller: "AMZ",
+      price: 19999,
+    },
+    {
+      id: 10,
+      url: "https://images.cnbctv18.com/wp-content/uploads/2024/02/honor-magic-6-pro.jpeg?impolicy=website&width=400&height=300",
+      name: "TRQ Mobile",
+      category: "Mobile",
+      seller: "AMZ",
+      price: 25999,
+    },
+    {
+      id: 8,
+      url: "https://m.media-amazon.com/images/I/61qF2lNCIHL.jpg",
+      name: "TRQ Mobile Charger",
+      category: "Mobile Charger Black Color",
+      seller: "AMZ",
+      price: 599,
+    },
+    {
+      id: 9,
+      url: "https://m.media-amazon.com/images/I/6176+zi7I2L._AC_UF1000,1000_QL80_.jpg",
+      name: "TRQ Mobile Charger",
+      category: "Mobile Charger White Color",
+      seller: "AMZ",
+      price: 599,
+    },
   ]
 
   const [products, setProducts] = useState(initialValue);
@@ -89,7 +121,6 @@ export default function StateProvider({ children }) {
       const updatedCart = cart.filter((item) => item.id != id);
       setCart(updatedCart);
     } else {
-
       const updatedCart = cart.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity - 1 } : item
       );
@@ -144,7 +175,7 @@ export default function StateProvider({ children }) {
       setWishList(updatedCart);
     } else {
       const updatedCart = wishlist.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        item.id === id ? { ...item, quantity: item.quantity - 1 } : item  
       );
       setWishList(updatedCart);
     }
@@ -158,9 +189,6 @@ export default function StateProvider({ children }) {
       setWishList([...wishlist, { ...product, quantity: 1 }])
     }
   }
-
-  console.log(wishlist)
-  console.log(cart)
 
   return <StateContext.Provider value={{
     products, addToCart, cart, increaseQuantity, decreaseQuantity, handleOrderPlacement, setSearchFilter, email, setEmail, password, setPassword, submitForm, allEntry, setAllEntry, favoriteFunc, wishlist, increaseWishListQuantity, decreaseWishListQuantity, setCart, setWishList

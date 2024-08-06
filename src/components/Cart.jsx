@@ -39,6 +39,7 @@ const CartList = () => {
   }
 
   const { cart, email, password, increaseQuantity, decreaseQuantity, handleOrderPlacement, wishlist } = useContext(StateContext)
+
   return (
     <div>
       <div className="bg-blue-500 flex justify-between items-center pr-10 pl-10 text-white h-16 ">
